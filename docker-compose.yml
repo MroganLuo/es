@@ -1,0 +1,19 @@
+version: '3.4'
+services:
+  elasticsearch:
+    image: elasticsearch:7.16.1
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      discovery.type: single-node
+    volumes:
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+
+  elasticsearch-head:
+    image: goldshooter/elasticsearch-head:5
+    container_name: elasticsearch-head
+    ports:
+      - 9100:9100
